@@ -22,6 +22,9 @@ d3.json(url).then(function (data) {
     data.names.forEach((id) => {
         dropdown.append("option").text(id).property("value", id);
     });
+
+
+    //We need functions to create and update charts. And to call them with starter data.
     //To initialize charts, need values from first data row. Here we populate them
     metaData(meta_data[0]);
     barChart(samples[0]);
@@ -45,11 +48,13 @@ function metaData(demographicInfo) {
 }
 
 function barChart(selectedId) {
+    //in order to sort desc, have to add ".reverse" to sort before they appear in chart
     let x_axis = selectedId.sample_values.slice(0, 10).reverse();
     let y_axis = selectedId.otu_ids
         .slice(0, 10)
         .reverse()
         .map((item) => `OTU ${item}`);
+        // get text descriptions for the mouseover effects, with "text: text" shown below
     let text = selectedId.otu_labels.slice(0, 10).reverse();
 
     barChart = {
