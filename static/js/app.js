@@ -122,5 +122,10 @@ function optionChanged(value) {
     bubbleChart(selectedId);
 }
 
+// Input fields can trigger a change event when new text is entered.
+inputField.on("change", function() {
+    let newText = d3.event.target.value;
+    console.log(newText);
+  });
 
 
